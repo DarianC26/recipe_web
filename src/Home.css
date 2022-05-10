@@ -1,0 +1,46 @@
+.banner {
+    background-image: url(https://thumbs.dreamstime.com/b/food-background-breakfast-yogurt-granola-muesli-strawberries-banner-image-website-gray-concrete-table-top-view-214357125.jpg);
+    background-size: cover;
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 40%;
+    width: 100%;
+}
+
+.title > strong {
+    font-family: "Source Serif Pro",serif;
+    font-size: 4em;
+    color: black;
+    font-weight: bold;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30%;
+}
+
+.search > input {
+    background-color: rgba(255,255,255,0.75);
+    background-position: 11px 50%;
+    background-size: 21px 21px;
+    border: none;
+    height: 2.8125rem;
+    padding: 0;
+    width: 100%;
+}
