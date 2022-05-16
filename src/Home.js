@@ -1,10 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import './Home.css';
-import Meals from './Meals';
+import Meals from './HomeMeals';
 
 function Home() {
     const [meals, setMeals] = useState(null);
     const [ingredients, setIngredients] = useState('');
+
+    useEffect(() => {
+        fetch(
+            `https://api.spoonacular.com/recipes/random?apiKey=88592da7a5de4e00b2ccea686f340179&number=3`
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setMeals(data);
+            })
+            .catch(() => {
+                console.log("error");
+            });
+    }, [])
 
     function getMealData() {
         fetch(
@@ -13,10 +27,10 @@ function Home() {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-            setMeals(data);
+                setMeals(data);
             })
             .catch(() => {
-            console.log("error");
+                console.log("error");
             });
     }
     
