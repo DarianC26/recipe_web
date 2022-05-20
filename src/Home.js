@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './Home.css';
-import Meals from './HomeMeals';
+import './Home.css';
+import HomeMeals from './HomeMeals';
 
 function Home() {
     const [meals, setMeals] = useState(null);
     const [ingredients, setIngredients] = useState('');
+    const LOCAL_STORAGE_KEY = 'mealList';
+
 
     useEffect(() => {
         fetch(
@@ -12,7 +15,6 @@ function Home() {
         )
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setMeals(data);
             })
             .catch(() => {
@@ -22,12 +24,12 @@ function Home() {
 
     function getMealData() {
         fetch(
-            `https://api.spoonacular.com/recipes/findByIngredients?apiKey=88592da7a5de4e00b2ccea686f340179&ingredients=apples,+flour,+steak&number=2`
+            `https://api.spoonacular.com/recipes/findByIngredients?apiKey=88592da7a5de4e00b2ccea686f340179&ingredients=${ingredients}`
         )
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                setMeals(data);
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+                window.location.href = "/meal"
             })
             .catch(() => {
                 console.log("error");
@@ -35,7 +37,7 @@ function Home() {
     }
     
     function handleValue(e) {
-        setIngredients(ingredients);
+        setIngredients(e.target.value);
     }
 
     return (
@@ -49,7 +51,7 @@ function Home() {
                     </div>
                     <div className='search'>
                         <input
-                        type="number"
+                        type="text"
                         placeholder="Ingredients"
                         onChange={handleValue}
                         className='input_box'
@@ -59,9 +61,10 @@ function Home() {
                 </div>
             </div>
 
-            <div>
-                {meals && <Meals meals={meals} />}
+            <div className='default'>
+                {meals && <HomeMeals meals={meals} />}
             </div>
+
         </div>
     );
 }

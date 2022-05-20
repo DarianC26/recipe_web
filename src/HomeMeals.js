@@ -1,28 +1,15 @@
 import React from 'react';
 import Meal from './Meal';
+import './HomeMeals.css';
 
-function Meals({ meals }) {
+function HomeMeals({ meals }) {
     return (
-        <section className="meals">
+        <div className="meals">
         {meals.recipes.map((meal) => {
           return <Meal key={meal.id} meal={meal} />;
         })}
-        </section>
+        </div>
     );
 }
 
-/*
-    return (
-        <section className="meals">
-          {meals.recipes.map((meal) => {
-            return (
-                <p key={meal.id}>
-                    {meal.title}
-                </p>
-            );
-        })}
-      </section>
-    );
-    */
-
-export default Meals
+export default HomeMeals
