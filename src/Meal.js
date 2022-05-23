@@ -3,14 +3,18 @@ import './Meal.css'
 
 function Meal ({ meal }) {
     const [imageUrl, setImageUrl] = useState("");
+    const [recipe, setRecipe] = useState("")
+    console.log(meal);
 
     useEffect(() => {
       fetch(
-        `https://api.spoonacular.com/recipes/${meal.id}/information?apiKey=cb1c464d94f142c08b156c5beddade8b&includeNutrition=false`
+        `https://api.spoonacular.com/recipes/${meal.id}/information?apiKey=88592da7a5de4e00b2ccea686f340179&includeNutrition=false`
       )
         .then((response) => response.json())
         .then((data) => {
+            console.log(data);
           setImageUrl(data.image);
+          setRecipe(data);
         })
         .catch(() => {
           console.log("error");
@@ -26,10 +30,10 @@ function Meal ({ meal }) {
                 <img src={imageUrl} alt="recipe" />
             </div>
             <div className="instructions">
-                <li>Preparation time: {meal.readyInMinutes} minutes</li>
-                <li>Number of servings: {meal.servings}</li>
+                <li>Preparation time: {recipe.readyInMinutes} minutes</li>
+                <li>Number of servings: {recipe.servings}</li>
             </div>
-            <a href={meal.sourceUrl} target="_blank" rel="noopener noreferrer">Go to Recipe</a>
+            <a href={recipeUrl} target="_blank" rel="noopener noreferrer">Go to Recipe</a>
         </div>
     );
 }
