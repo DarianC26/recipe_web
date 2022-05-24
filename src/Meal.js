@@ -33,7 +33,7 @@ function Meal ({ meal }) {
                 <li>Preparation time: {recipe.readyInMinutes} minutes</li>
                 <li>Number of servings: {recipe.servings}</li>
             </div>
-            <a href={recipeUrl} target="_blank" rel="noopener noreferrer">Go to Recipe</a>
+            <a href={recipe.sourceUrl} target="_blank" rel="noopener noreferrer">Go to Recipe</a>
         </div>
     );
 }

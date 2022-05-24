@@ -4,7 +4,8 @@ import './MealPage.css'
 
 function MealPage() {
     const LOCAL_STORAGE_KEY = 'mealList';
-    const meals = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    const [ingredients, setIngredients] = useState('');
+    const [meals, setMeals] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)));
 
     function getMealData() {
         fetch(
@@ -13,7 +14,7 @@ function MealPage() {
             .then((response) => response.json())
             .then((data) => {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
-                window.location.href = "/meal"
+                setMeals(data);
             })
             .catch(() => {
                 console.log("error");
