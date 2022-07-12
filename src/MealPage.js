@@ -34,7 +34,7 @@ function MealPage() {
                     onChange={handleValue}
                     className='input_box'
                 />
-                <button onClick={getMealData}>Get Daily Meal Plan</button>
+                <button onClick={getMealData}>Search</button>
             </div>
             <div className="meals">
             {meals.map((meal) => {
